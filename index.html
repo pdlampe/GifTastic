@@ -6,73 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GifTastic</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body>
 
-    <button data-hero="Wolverine">Wolverine</button>
-    <button data-hero="Batman">
-        Batman
-    </button>
+    <div class="container">
 
-    <button data-hero="Wonder Woman">
-        Wonder Woman
-    </button>
-    <button data-hero="Spider-man">
-        Spider-man
-    </button>
-    <button data-hero="Catwoman">
-        Catwoman
-    </button>
-
-    <div id="gifs-appear-here">
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
-
-        $("button").on("click", function () {
-            var hero = $(this).attr("data-hero");
-
-            var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-                hero + "&api_key=u3jCbRqRv8q3zT8gK0cXNjtoWU8rHBme&limit=10";
-
-            $.ajax({
-                url: queryURL,
-                method: "GET"
-            })
-
-                .then(function (response) {
-
-                    var results = response.data;
+        <div class="jumbotron">
+            <h2>Comic Book Superheroes</h2>
+        </div>
 
 
-                    for (var i = 0; i < results.length; i++) {
 
-                        if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+        <div id="heroImages">
 
-                            var gifDiv = $("<div>");
+        </div>
 
+        <form id="heroform">
+            <label for="heroinput">Add a Super Hero: </label>
+            <input type="text" id="heroinput">
+            <br>
+            <input id="addhero" type="submit" value="Submit">
+        </form>
 
-                            var rating = results[i].rating;
+        <div id="showGIF"> </div>
 
-                            var p = $("<p>").text("Rating: " + rating);
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="assets/javascript/functionality.js"></script>
 
-                            var heroImage = $("<img>");
-
-                            heroImage.attr("src", results[i].images.fixed_height.url);
-
-                            gifDiv.append(p);
-                            gifDiv.append(heroImage);
-
-                            $("#gifs-appear-here").prepend(gifDiv);
-                        }
-                    }
-                });
-        });
-
-    </script>
 
 </body>
 
