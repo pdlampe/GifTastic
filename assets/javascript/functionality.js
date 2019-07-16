@@ -37,8 +37,8 @@ $(document).ready(function () {
     $(document).on('click', 'button', function () {
         $('#showGIF').empty();
         var herogifs = $(this).attr('data-name');
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q" + herogifs + "&api_key=u3jCbRqRv8q3zT8gK0cXNjtoWU8rHBme&limit=10";
-        console.log(queryURL);
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + herogifs + "&api_key=u3jCbRqRv8q3zT8gK0cXNjtoWU8rHBme&limit=10";
+        // console.log(queryURL);
 
         $.ajax({
             url: queryURL,
@@ -59,8 +59,8 @@ $(document).ready(function () {
                         .attr('data-animate', results[i].images.fixed_height.url)
                         .attr('data-state', "still")
                         .addClass("showImage");
-                    gifDiv.append(gifRating)
-                        .append(gifImage);
+
+                    gifDiv.append(gifRating).append(gifImage);
 
                     $('#showGIF').prepend(gifDiv);
                 }
